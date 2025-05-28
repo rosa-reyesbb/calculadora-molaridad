@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Molaridad</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #e8f0fe;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 450px;
+    }
+    h2 {
+      color: #2b4f81;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background-color: #2b4f81;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #1f3b5b;
+    }
+    .resultado {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #f1f9ff;
+      border-left: 5px solid #2b4f81;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Calculadora de Molaridad</h2>
+
+    <label for="moles">Cantidad de sustancia (n) en moles:</label>
+    <input type="number" id="moles" step="any" placeholder="Ej: 0.5">
+
+    <label for="volumen">Volumen de la solución (V) en litros:</label>
+    <input type="number" id="volumen" step="any" placeholder="Ej: 1.0">
+
+    <button onclick="calcularMolaridad()">Calcular Molaridad</button>
+
+    <div class="resultado" id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularMolaridad() {
+      const n = parseFloat(document.getElementById('moles').value);
+      const V = parseFloat(document.getElementById('volumen').value);
+
+      if (!n || !V || V <= 0) {
+        document.getElementById('resultado').innerHTML = '⚠️ Ingresa valores válidos (V > 0).';
+        return;
+      }
+
+      const M = n / V;
+      document.getElementById('resultado').innerHTML = 
+        `<strong>Molaridad (M):</strong> ${M.toFixed(3)} mol/L`;
+    }
+  </script>
+</body>
+</html>
